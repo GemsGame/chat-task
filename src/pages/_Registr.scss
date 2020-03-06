@@ -1,0 +1,23 @@
+.registr-block {
+    display: grid;
+    justify-content: center;
+    text-align: center;
+}
+.registr-window {
+height: 600px;
+background: url("../assets/image\ 1.png") no-repeat center;
+display: grid;
+align-content: center;
+background-position-y: 80px;
+
+}
+.registr-block__header {
+font-family: 'Roboto';
+font-style: normal;
+font-weight: bold;
+font-size: 24px;
+line-height: 28px;
+text-transform: uppercase;
+margin-bottom: 27px;
+color: #FFFFFF;
+}

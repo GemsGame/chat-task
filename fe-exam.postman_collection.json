@@ -1,0 +1,289 @@
+{
+	"info": {
+		"_postman_id": "a2952294-53ce-4a82-b7a0-8493705771d4",
+		"name": "fe-exam",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Authorized",
+			"item": [
+				{
+					"name": "User Info",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{api_host}}/api/user",
+							"protocol": "http",
+							"host": [
+								"{{api_host}}"
+							],
+							"path": [
+								"api",
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Index Messages",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{api_host}}/api/rooms/{{room_id}}/messages",
+							"protocol": "http",
+							"host": [
+								"{{api_host}}"
+							],
+							"path": [
+								"api",
+								"rooms",
+								"{{room_id}}",
+								"messages"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Store Message",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"text\": \"Hello, all\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{api_host}}/api/rooms/{{room_id}}/messages",
+							"protocol": "http",
+							"host": [
+								"{{api_host}}"
+							],
+							"path": [
+								"api",
+								"rooms",
+								"{{room_id}}",
+								"messages"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{access_token}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "3b240a1f-dff6-4b6d-8a3d-dd0d5166c069",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "782bed42-f351-45fd-8f22-50482f6873e5",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Apply",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"Ivan Petrov\",\n\t\"phone_number\": \"375291234567\",\n\t\"email\": \"ivan@gmail.com\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{api_host}}/api/apply",
+					"protocol": "http",
+					"host": [
+						"{{api_host}}"
+					],
+					"path": [
+						"api",
+						"apply"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User Register",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"Test User 1\",\n\t\"email\": \"testuser1@{{room_id}}\",\n\t\"password\": \"str0ngpassw0rd\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{api_host}}/api/auth/register",
+					"protocol": "http",
+					"host": [
+						"{{api_host}}"
+					],
+					"path": [
+						"api",
+						"auth",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User Issue Token",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"email\": \"testuser1@{{room_id}}\",\n\t\"password\": \"str0ngpassw0rd\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{api_host}}/api/auth/issue-token",
+					"protocol": "http",
+					"host": [
+						"{{api_host}}"
+					],
+					"path": [
+						"api",
+						"auth",
+						"issue-token"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "10a091ac-7fdc-47ff-abf2-7d43adc163eb",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "fd598d9f-21cf-4250-aae0-ece4cc950f1f",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "5b35280a-1dc6-4ecd-bb05-b4a2314b7a00",
+			"key": "api_host",
+			"value": "104.248.82.179",
+			"type": "string"
+		},
+		{
+			"id": "370fb029-c31c-45d9-87a2-1fa52a1e7999",
+			"key": "room_id",
+			"value": "074a067f-7f44-421a-9a62-76c0d3a4778b",
+			"type": "string"
+		},
+		{
+			"id": "e73044ee-758f-4734-8763-3b47c631b8c2",
+			"key": "access_token",
+			"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiM2UwMDlmMDAxZmY3ZmIzYzc4ODhhMjY2MGRlMDc0MzRiZGE1NDZlZGMxYjI0MDIxN2I3YjEyMWJkZjJiZmEzMzYyZDRkZDBkZThmMzJiMzEiLCJpYXQiOjE1ODM0OTUzOTUsIm5iZiI6MTU4MzQ5NTM5NSwiZXhwIjoxNjE1MDMxMzk1LCJzdWIiOiI3YTM1NmI5My01OWQzLTQwMjgtOGRjMS1iZjRjYTRiYTVjZjAiLCJzY29wZXMiOltdfQ.Up4z0SRKxwoNkbtz1xsQTlhCUxQmCyRgcjDDiRKCFrP7t4GZiVtbQs6Ej37SdGJecH6BgG92CZ7VahHei5V_tsCWgMB2lSkbFZDveSdlmGg8q5S4M9AxwYXzsm8jLsJN-HvHW7iBTv6BLLY3ptqI5BkdXFhlPqwZnY5HKMRaUUOZiD6ohD6q8Gvkh3Gd-qS893q-ltde1xCbFk9Z3Ku_ohx4aCfZhB-VChRcbJ3M-XahFGJVp9EiAyui1tFFJUy7gHffTobY9-CqZ1c2VKnrZszf9qwFktYh_UKp2eAH7kMPxBEBm7GTWmw4toEBUJVVf_LaSiqqZOsXBFtdyHX4XM6MjLSo_bCQLZ2KtnLUGe84ybO__-JFzYDlf4j4V3nmVJxDvsj3WJLzrMTv8UVkvKmZvqESpUGDt45_A3niIIZzY7PYY19KPOh1GBU0s6R8L1m-NXFPEBlYUD7HEDW-tf_UudMkz8w0vEH4VnbZQqlNpz_lWN-aVuNg7_gBYfC-5l7DLoOLdw5_XBFEh3xRE5eENjjlvJJIGUuA0EyqmA02wKStIV7jaOrK4h4kOZoUNT5eHCyyLp8h_idDeKPssvsXSC6Blu1IBzgHprcI4DlvUiCjtgvvVkvU18eNeO6RnJxu5nkUAz4tXOyzw5u9AaiDsnLDj3EpcG2s2DkuGyI",
+			"type": "string"
+		}
+	],
+	"protocolProfileBehavior": {}
+}
