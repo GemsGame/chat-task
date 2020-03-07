@@ -11,6 +11,7 @@ import {
 } from "react-router-dom";
 import Login from './pages/Login';
 import PrivateRoute from "./rout/PrivateRout";
+import Chat from './pages/Chat';
 
 class App extends React.Component {
 
@@ -23,7 +24,7 @@ class App extends React.Component {
           <div className="App">
             <Route path="/registration" component={Registr} />
             <Route path="/login" component={Login} />
-            <PrivateRoute path="/messages" component={Registr} />
+            <PrivateRoute path="/messages" component={Chat} />
           </div>
           </Switch>
         </Router>

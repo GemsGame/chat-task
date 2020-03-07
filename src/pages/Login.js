@@ -16,9 +16,7 @@ class Login extends React.Component {
     this.setState({[event.target.name]: event.target.value});
     console.log(this.state);
   }
-   
-  login = () => {
-  }
+
     render () {
       if(this.props.authentication.status === "ok") {
         return <Redirect to="/messages"/>;

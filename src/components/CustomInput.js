@@ -8,7 +8,7 @@ const CustomInput = ({ labelName,
     className,
     }) => {
     return (
-        <div>
+        
         
             <input
                 className={className}
@@ -17,7 +17,7 @@ const CustomInput = ({ labelName,
                 onChange={action}
                 value={value}
             />
-        </div>
+        
     )
 }
 
