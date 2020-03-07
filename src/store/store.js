@@ -1,6 +1,14 @@
-import {createStore, applyMiddleware } from 'redux';
+import {createStore, applyMiddleware} from 'redux';
 import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import rootReducer from "../reducers/rootReducer";
+import {localStorageGet} from "../service/localStorage";
 
-export const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)));
+const localAuth = localStorageGet("authentication");
+let storage = Object;
+if(localAuth) {
+    storage = localAuth;
+} else {
+    storage = {status:false};
+}
+export const store = createStore(rootReducer, {"authentication":storage}, composeWithDevTools(applyMiddleware(thunk)));

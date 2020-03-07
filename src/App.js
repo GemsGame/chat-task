@@ -10,7 +10,7 @@ import {
   Link
 } from "react-router-dom";
 import Login from './pages/Login';
-
+import PrivateRoute from "./rout/PrivateRout";
 
 class App extends React.Component {
 
@@ -19,11 +19,13 @@ class App extends React.Component {
     return (
       <Provider store={store}>
         <Router>
+        <Switch>
           <div className="App">
             <Route path="/registration" component={Registr} />
             <Route path="/login" component={Login} />
+            <PrivateRoute path="/messages" component={Registr} />
           </div>
-
+          </Switch>
         </Router>
       </Provider>
 

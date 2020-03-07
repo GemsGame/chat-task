@@ -1,6 +1,5 @@
 import {api_host} from "../config/tokens.js";
-
-
+import {localStorageSet} from "../service/localStorage";
 
 export function registrSuccess(response) {
     return {
@@ -28,18 +27,14 @@ export function loginError(response) {
     };
 }
 
-export function registr() {
+export function registr(state) {
     return dispatch => {
         fetch(`http://${api_host}/api/auth/register`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json;charset=utf-8'
             },
-            body: {
-                "name": "Test User 1",
-                "email": "testuser1@4d6f0720-503e-4977-a8fd-37f5bb36f354",
-                "password": "str0ngpassw0rd"
-            }
+            body: JSON.stringify(state)
 
         }).then(result => result.json()).then(data => dispatch(registrSuccess(data)))
         .catch(error => dispatch(registrError(error)));
@@ -48,14 +43,15 @@ export function registr() {
 
 export function login (state) {
     return dispatch => {
-        console.log(state);
         fetch(`http://${api_host}/api/auth/issue-token`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify(state)
-        }).then(result =>result.json()).then(data => dispatch(loginSuccess(data)))
-        .catch(error => dispatch(loginError(error)));
+        }).then(result => result.json())
+        .then(data => dispatch(loginSuccess(data)))
+        .then((data) => localStorageSet('authentication', data.payload))
+        .catch(error => dispatch(loginError(error)))
     }
 }

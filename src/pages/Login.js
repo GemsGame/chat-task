@@ -3,7 +3,7 @@ import CustomInput from "../components/CustomInput";
 import CustomButton from "../components/CustomButton";
 import { connect } from "react-redux";
 import {login} from "../actions/athentication";
-import Pusher from "pusher-js";
+import {Redirect} from "react-router-dom";
 
 class Login extends React.Component {
     state = {
@@ -20,6 +20,9 @@ class Login extends React.Component {
   login = () => {
   }
     render () {
+      if(this.props.authentication.status === "ok") {
+        return <Redirect to="/messages"/>;
+      }
       return (
         <div className="registr-window">
             <div className="registr-block">
