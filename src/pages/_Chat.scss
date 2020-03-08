@@ -14,11 +14,12 @@
   color: rgba(0, 0, 0, 0.5);
   height: 100%;
   display: grid;
-  grid-template-rows: 1fr;
+  grid-template-rows: 0.01fr 1fr;
 }
 .chat__title {
     text-align: center;
     padding-top: 36px;
+    padding-bottom: 21px;
 }
 .chat__user-name {
     display:inline-block;

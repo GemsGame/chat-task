@@ -18,18 +18,17 @@ class App extends React.Component {
   render() {
 
     return (
+      <div className="App">
       <Provider store={store}>
         <Router>
         <Switch>
-          <div className="App">
             <Route path="/registration" component={Registr} />
             <Route path="/login" component={Login} />
             <PrivateRoute path="/messages" component={Chat} />
-          </div>
           </Switch>
         </Router>
       </Provider>
-
+      </div>
     )
 
   }
