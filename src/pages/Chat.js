@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import CustomInput from "../components/CustomInput";
-import { getMessages, sendMessages } from "../actions/messages"
+import { getMessages, sendMessages} from "../actions/messages"
+import {getWebSocketAction} from "../service/websocket";
 import { MessageList } from "../components/MessageList";
+
 
 const Chat = ({ authentication, messages, getMessages, sendMessages }) => {
     const [input, setInput] = useState({});
@@ -16,6 +18,7 @@ const Chat = ({ authentication, messages, getMessages, sendMessages }) => {
  
     useEffect(() => {
         getMessages(authentication.data.access_token);
+        getWebSocketAction(authentication.data.room.id, authentication.data.access_token, getMessages);
     }, []);
 
     if (messages.length != 0) {
@@ -42,7 +45,8 @@ const mapStateToProps = state => {
 const mapDispatchToProp = dispatch => {
     return {
         getMessages: access_token => dispatch(getMessages(access_token)),
-        sendMessages: (access_token, message) => dispatch(sendMessages(access_token, message))
+        sendMessages: (access_token, message) => dispatch(sendMessages(access_token, message)),
+        
     }
 }
 export default connect(

@@ -28,7 +28,7 @@
 
 .chat__message {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 0.95fr) minmax(40px, 0.05fr));
+    grid-template-columns: repeat(auto-fit, minmax(100px, 0.985fr) minmax(40px, 0.01fr));
     gap:8px;
     padding-left:16px;
     padding-bottom: 15px;
