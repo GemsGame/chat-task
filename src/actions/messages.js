@@ -1,5 +1,5 @@
 import { api_host, room_id } from '../config/tokens';
-
+import { store } from 'react-notifications-component';
 
 export function getMessagesError(response) {
   return {
@@ -59,13 +59,34 @@ export const sendMessages = (access_token, message) => (dispatch) => {
       Authorization: `Bearer ${access_token}`,
     },
     body: JSON.stringify(message),
-  }).then((data) => data.json()).then((result) => dispatch(sendMessagesSuccess(result)))
-    .catch((error) => dispatch(sendMessagesError(error)));
+  }).then((data) => data.json()).then((result) => {
+    if (result.user_id) {
+      dispatch(sendMessagesSuccess(result));
+    } else {
+      dispatch(sendMessagesError(result));
+      store.addNotification({
+        title: result.message,
+        message: Object.keys(result.errors).map((item, i) => result.errors[item][0]).toString(),
+        type: "danger",
+        insert: "top",
+        container: "bottom-center",
+        animationIn: ["animated", "fadeIn"],
+        animationOut: ["animated", "fadeOut"],
+        dismiss: {
+          duration: 5000,
+          showIcon: true
+        },
+      });
+    }
+  }
+
+
+  )
 };
 
 export const getMessageHistory = (access_token, current_page, last_page) => dispatch => {
 
-  fetch(`http://${api_host}/api/rooms/${room_id}/messages?page=${current_page < last_page? current_page += 1: current_page += 0}`, {
+  fetch(`http://${api_host}/api/rooms/${room_id}/messages?page=${current_page < last_page ? current_page += 1 : current_page += 0}`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json;charset=utf-8',

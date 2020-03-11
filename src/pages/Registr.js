@@ -2,7 +2,7 @@ import React from "react";
 import CustomInput from "../components/CustomInput";
 import CustomButton from "../components/CustomButton";
 import { connect } from "react-redux";
-import { registr } from "../actions/athentication";
+import { registr } from "../actions/registration";
 
 
 class Registr extends React.Component {
@@ -36,7 +36,7 @@ class Registr extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    authentication: state.authentication
+    registration: state.registration
   };
 };
 
