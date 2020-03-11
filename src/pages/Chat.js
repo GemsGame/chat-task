@@ -30,7 +30,7 @@ const Chat = ({
 
   
   if (messages.length !== 0) {
-    store = <MessageList messages={messages.data} />;
+    store = <MessageList messages={messages.data} userID={authentication.data.user.id} />;
   }
   return (
    
