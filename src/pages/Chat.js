@@ -5,6 +5,7 @@ import { getMessages, sendMessages, getMessageHistory } from '../actions/message
 import { getWebSocketAction} from '../service/websocket';
 import { MessageList } from '../components/MessageList';
 
+
 const Chat = ({
   authentication, messages, getMessages, sendMessages,getMessageHistory
 }) => {
@@ -33,7 +34,7 @@ const Chat = ({
     store = <MessageList messages={messages.data} userID={authentication.data.user.id} />;
   }
   return (
-   
+ 
     <div className="chat">
       <div className="chat__box">
         <div className="chat__title">

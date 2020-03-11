@@ -1,5 +1,6 @@
 import { api_host } from '../config/tokens.js';
 import { localStorageSet } from '../service/localStorage';
+import { store } from 'react-notifications-component';
 
 export function registrSuccess(response) {
   return {
@@ -36,9 +37,44 @@ export function registr(state) {
       },
       body: JSON.stringify(state),
 
-    }).then((result) => result.json()).then((data) => dispatch(registrSuccess(data)))
-      .catch((error) => dispatch(registrError(error)));
+    }).then((result) => result.json())
+      .then((data) => {
+       if(data.status === 'ok') {
+          dispatch(registrSuccess(data));
+          store.addNotification({
+            title: data.status,
+            message: 'registration success',
+            type: "success",
+            insert: "top",
+            container: "bottom-center",
+            animationIn: ["animated", "fadeIn"],
+            animationOut: ["animated", "fadeOut"],
+            dismiss: {
+              duration: 5000,
+              showIcon: true
+            },
+          });
+       } else {
+        dispatch(registrError(data));
+        store.addNotification({
+          title: data.message,
+          message: Object.keys(data.errors).map((item, i) => data.errors[item][0]).toString(),
+          type: "danger",
+          insert: "top",
+          container: "bottom-center",
+          animationIn: ["animated", "fadeIn"],
+          animationOut: ["animated", "fadeOut"],
+          dismiss: {
+            duration: 5000,
+            showIcon: true
+          },
+        });
+       }
+
+      }
+      )
   };
+
 }
 
 export function login(state) {
@@ -50,8 +86,44 @@ export function login(state) {
       },
       body: JSON.stringify(state),
     }).then((result) => result.json())
-      .then((data) => dispatch(loginSuccess(data)))
-      .then((data) => localStorageSet('authentication', data.payload))
-      .catch((error) => dispatch(loginError(error)));
+      .then((data) => {
+      if(data.status === 'ok') {
+         dispatch(loginSuccess(data));
+         localStorageSet('authentication', data);
+          store.addNotification({
+            title: data.status,
+            message: 'login success',
+            type: "success",
+            insert: "top",
+            container: "bottom-center",
+            animationIn: ["animated", "fadeIn"],
+            animationOut: ["animated", "fadeOut"],
+            dismiss: {
+              duration: 5000,
+              showIcon: true
+            },
+          });
+      } else {
+        dispatch(loginError(data));
+        store.addNotification({
+          title: data.message,
+          message: Object.keys(data.errors).map((item, i) => data.errors[item][0]).toString(),
+          type: "danger",
+          insert: "top",
+          container: "bottom-center",
+          animationIn: ["animated", "fadeIn"],
+          animationOut: ["animated", "fadeOut"],
+          dismiss: {
+            duration: 5000,
+            showIcon: true
+          },
+        });
+      }
+    })
+      
+    
+   
+
+
   };
 }
