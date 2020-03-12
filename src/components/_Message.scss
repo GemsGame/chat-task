@@ -1,5 +1,5 @@
-$userColor:#29bbe3;
-$interlocutorColor:#29E3E1;
+$userColor: #29bbe3;
+$interlocutorColor: #29e3e1;
 
 .message__text {
   display: grid;
@@ -11,23 +11,20 @@ $interlocutorColor:#29E3E1;
   font-size: 15px;
   line-height: 18px;
   color: #ffffff;
+  word-break: break-all;
 }
 
 .message__text_user {
   background: $userColor;
 }
-
 .message__text_interlocutor {
   background: $interlocutorColor;
 }
 
 .message__block {
   display: grid;
-  grid-template-columns: minmax(200px, 0.8fr);
-
   padding-right: 30px;
   padding-bottom: 12px;
-  justify-content: flex-end;
 }
 
 .message__block_user {
@@ -41,24 +38,24 @@ $interlocutorColor:#29E3E1;
 }
 
 .message__text_user:before {
-    right: 24px;
-    border-right: 20px solid $userColor;
-    border-bottom-left-radius: 16px 14px;
-    transform: translate(0, 11px);
-    content: "";
-    position: absolute;
-    height: 20px;
+  right: 24px;
+  border-right: 20px solid $userColor;
+  border-bottom-left-radius: 16px 14px;
+  transform: translate(0, 11px);
+  content: "";
+  position: absolute;
+  height: 20px;
 }
 
 .message__text_user:after {
-    right: 11px;
-    width: 20px;
-    background: white;
-    border-bottom-left-radius: 15px;
-    transform: translate(1px, 10px);
-    content: "";
-    position: absolute;
-    height: 25px;
+  right: 11px;
+  width: 20px;
+  background: white;
+  border-bottom-left-radius: 15px;
+  transform: translate(1px, 10px);
+  content: "";
+  position: absolute;
+  height: 25px;
 }
 
 .message__text_interlocutor:before {
@@ -83,7 +80,6 @@ $interlocutorColor:#29E3E1;
 }
 
 .message__name {
- 
   font-family: "Roboto";
   font-style: normal;
   font-weight: normal;
