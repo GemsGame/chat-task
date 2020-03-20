@@ -9,6 +9,7 @@ class Registr extends React.Component {
   state = {
     name: '',
     email: '',
+    room_id:'',
     password: ''
   }
 
@@ -24,6 +25,7 @@ class Registr extends React.Component {
           <div className="registr-block__column"><h1 className="registr-block__header">registration</h1></div>
           <div className="registr-block__column"><CustomInput className="main-input" name="name" placeholder="Your name" action={this.handleSubmit} /></div>
           <div className="registr-block__column"><CustomInput className="main-input" name="email" placeholder="E-mail address" action={this.handleSubmit} /></div>
+          <div className="registr-block__column"><CustomInput className="main-input" name="room_id" placeholder="Room id" action={this.handleSubmit} /></div>
           <div className="registr-block__column"><CustomInput className="main-input" name="password" placeholder="Password" action={this.handleSubmit} /></div>
           <div className="registr-block__column"><CustomButton className="main-button" action={() => this.props.registr(this.state)}>Register</CustomButton></div>
      

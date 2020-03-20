@@ -19,9 +19,9 @@ const Chat = ({
   let store;
 
   useEffect(() => {
-    getMessages(authentication.data.access_token);
+    getMessages(authentication.data.access_token, authentication.data.user.room_id);
     getWebSocketAction(
-      authentication.data.room.id,
+      authentication.data.user.room_id,
       authentication.data.access_token,
       getMessages
     );
@@ -61,7 +61,7 @@ const Chat = ({
             className="send-button"
             alt="send-button"
             src="../assets/send_button.svg"
-            onClick={() => sendMessages(authentication.data.access_token, input)}
+            onClick={() => sendMessages(authentication.data.access_token, input, authentication.data.user.room_id)}
           />
         </div>
       </div>

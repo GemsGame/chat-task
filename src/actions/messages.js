@@ -40,8 +40,8 @@ export function sendMessagesSuccess(response) {
   };
 }
 
-export const getMessages = (access_token) => (dispatch) => {
-  fetch(`http://${api_host}/api/rooms/${room_id}/messages`, {
+export const getMessages = (access_token, roomID) => (dispatch) => {
+  fetch(`http://${api_host}/api/rooms/${roomID}/messages`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json;charset=utf-8',
@@ -51,8 +51,8 @@ export const getMessages = (access_token) => (dispatch) => {
     .catch((error) => dispatch(getMessagesError(error)));
 };
 
-export const sendMessages = (access_token, message) => (dispatch) => {
-  fetch(`http://${api_host}/api/rooms/${room_id}/messages`, {
+export const sendMessages = (access_token, message, roomID) => (dispatch) => {
+  fetch(`http://${api_host}/api/rooms/${roomID}/messages`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json;charset=utf-8',

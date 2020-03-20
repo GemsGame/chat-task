@@ -27,7 +27,7 @@ export const getWebSocketAction = (
  const channel = pusher.subscribe(`private-App.Room.${room_id}`);
 
   channel.bind('App\\Events\\NewMessageSent', (data) => {
-    updateFunction(access_token);
+    updateFunction(access_token, room_id);
   })
 
 };
